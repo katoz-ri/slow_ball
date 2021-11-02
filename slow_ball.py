@@ -100,7 +100,7 @@ def gameloop():
     run = True
     gameover=False
     homescreen=False
-    x1,y1,x2,y2=130,230,260,80
+    y1=230
     but_color=(0,200,0)
     other_but_color=(0,0,200)
     while run:
@@ -112,20 +112,21 @@ def gameloop():
             gamewindow.fill((0,0,0))
             text_screen("Game over", (255,0,0), 150, 250)
             text_screen("your score:"+str(enem.i), (255,0,0),100, 300)
+            text_screen1("Press backspace to exit",(255,0,0),100,500)
             userinput=pygame.key.get_pressed()
-            if userinput[pygame.K_SPACE]:
+            if userinput[pygame.K_BACKSPACE]:
                 break
         elif not homescreen:
             text_screen("PLAY |>", but_color, 150, 250)
             text_screen("EXIT -_-", other_but_color,150, 350)
-            pygame.draw.rect(gamewindow,(20,49,250),(x1,y1,x2,y2),2)
+            pygame.draw.rect(gamewindow,(20,49,250),(130,y1,260,80),2)
             userinput=pygame.key.get_pressed()
             if userinput[pygame.K_DOWN]:
-                x1,x2,y1,y2=130,260,330,80
+                y1=330
                 but_color=(0,0,200)
                 other_but_color=(0,200,0)
             elif userinput[pygame.K_UP]:
-                x1,y1,x2,y2=130,230,260,80
+                y1=230
                 but_color=(0,200,0)
                 other_but_color=(0,0,200)
             elif userinput[pygame.K_SPACE] and y1==230:
