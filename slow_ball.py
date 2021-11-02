@@ -7,13 +7,9 @@ overloads=False
 gamefps=pygame.time.Clock()
 green=(0,255,0)
 gamewindow=pygame.display.set_mode((width,height))
-font = pygame.font.SysFont(None, 75)
-font1=pygame.font.SysFont(None, 40)
-def text_screen(text, color, x, y):
+def text_screen(text, color, x, y,bsize):
+    font = pygame.font.SysFont(None, bsize)
     screen_text = font.render(text, True, color)
-    gamewindow.blit(screen_text, [x, y])
-def text_screen1(text, color, x, y):
-    screen_text = font1.render(text, True, color)
     gamewindow.blit(screen_text, [x, y])
 class ball:
     ball_x=250
@@ -110,15 +106,15 @@ def gameloop():
                 run=False
         if gameover == True and homescreen:
             gamewindow.fill((0,0,0))
-            text_screen("Game over", (255,0,0), 150, 250)
-            text_screen("your score:"+str(enem.i), (255,0,0),100, 300)
-            text_screen1("Press backspace to exit",(255,0,0),100,500)
+            text_screen("Game over", (255,0,0), 150, 250,75)
+            text_screen("your score:"+str(enem.i), (255,0,0),100, 300,75)
+            text_screen("Press backspace to exit",(255,0,0),100,500,40)
             userinput=pygame.key.get_pressed()
             if userinput[pygame.K_BACKSPACE]:
                 break
         elif not homescreen:
-            text_screen("PLAY |>", but_color, 150, 250)
-            text_screen("EXIT -_-", other_but_color,150, 350)
+            text_screen("PLAY |>", but_color, 150, 250,75)
+            text_screen("EXIT -_-", other_but_color,150, 350,75)
             pygame.draw.rect(gamewindow,(20,49,250),(130,y1,260,80),2)
             userinput=pygame.key.get_pressed()
             if userinput[pygame.K_DOWN]:
@@ -134,7 +130,7 @@ def gameloop():
             elif userinput[pygame.K_SPACE] and y1==330:
                 run=False
         else:
-            text_screen1("Your Score: "+str(enem.i),(255,0,0),0,0)
+            text_screen("Your Score: "+str(enem.i),(255,0,0),0,0,40)
             if player.x>width:
                 player.bar_vel=-2
             elif player.x<=0:
